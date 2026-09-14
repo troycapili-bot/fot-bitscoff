@@ -1,0 +1,1403 @@
+html
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+
+/* ========================================
+   main bg
+======================================== */
+
+body {
+	background-image:
+        url('Black Closed Sign Landscape Poster (3).png');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center;
+	background-size: cover;
+	margin: 0;
+	height: 100vh;
+}
+
+
+/* ========================================
+   MAIN BUTTONS
+======================================== */
+
+.button-container {
+	display: flex;
+	justify-content: center;	
+	gap: 20px;
+	perspective: 1000px;
+}
+
+.btn {
+    	margin-top: 200px;
+   	background-color: #CB4848;
+   	border: none;
+    	color: white;
+    	padding: 100px 80px;
+    	font-size: 70px;
+    	cursor: pointer;
+    	position: relative;
+    	overflow: hidden;
+    	border-radius: 4px;
+
+    box-shadow:
+        0 4px 8px
+        rgba(0,0,0,0.15);
+
+    transition:
+        transform 0.2s cubic-bezier(0.25, 1, 0.5, 1),
+        background-color 0.2s ease,
+        box-shadow 0.2s ease;
+
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+
+.btn:hover {
+    background-color: #BF3636;
+
+    box-shadow:
+        0 8px 16px
+        rgba(0,0,0,0.25);
+}
+
+
+/* ========================================
+   paripple effect
+======================================== */
+
+.ripple {
+	position: absolute;
+	border-radius: 50%;
+	transform: scale(0);
+
+    animation:
+	ripple-animation 600ms linear;
+
+    background-color:
+        rgba(255,255,255,0.7);
+
+    pointer-events: none;
+}
+
+@keyframes ripple-animation {
+    to {
+	transform: scale(4);
+        opacity: 0;
+    }
+}
+
+
+/* ========================================
+   letter screen
+======================================== */
+
+#letterScreen {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+
+    background:
+        linear-gradient(
+        #D44F4F,
+        #E08080,
+        #F1C5C5,
+        #FEFBFB
+        );
+
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+	z-index: 1000;
+}
+
+
+/* ========================================
+   letter mismo
+======================================== */
+
+.letter {
+	width: 90%;	
+	max-width: 650px;
+	max-height: 95vh;
+	background: #fffafc;
+    	padding: 45px;
+    	border-radius: 20px;
+	border: 3px solid #C84141;
+	box-shadow: 0 15px 40px	rgba(180,70,100,0.25);
+	position: relative;
+	animation: letter-appear 0.8s ease;
+	overflow-y: auto;
+	box-sizing: border-box;
+}
+
+@keyframes letter-appear {
+    from {
+        transform: scale(0.7);
+        opacity: 0;
+}
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+/* ========================================
+  letter text
+======================================== */
+
+.letter-text {
+	color: #5c4149;
+    	font-size: 19px;
+    	line-height: 1.8;
+    	text-align: left;
+    	font-family: Helvetica;
+}
+
+.highlight {
+	color: #D44F4F;
+    	font-weight: bold;
+}
+
+
+/* ========================================
+   singnature
+======================================== */
+
+.signature {
+	text-align: right;
+    	margin-top: 35px;
+    	color: #D44F4F;
+    	font-size: 22px;
+    	font-style: italic;
+}
+
+
+/* ========================================
+   backbtn
+======================================== */
+
+.back-button {
+    	display: block;
+    	margin: 30px auto 0;
+    	padding: 13px 30px;
+    	border: none;
+    	border-radius: 30px;
+    	background: #D44F4F;
+    	color: white;
+    	font-size: 16px;
+    	cursor: pointer;
+    	transition: 0.3s;
+}
+
+.back-button:hover {
+    	background: #d94f70;
+    	transform: scale(1.05);
+}
+
+
+/* ========================================
+   cam screen
+======================================== */
+
+#PictureScreen {
+    	display: none;
+	position: fixed;
+    	top: 0;
+    	left: 0;
+    	width: 100vw;
+    	height: 100vh;
+	background-image: url('biscoff.png');
+	background-repeat: no-repeat;
+	background-position: center;
+    	background-size: cover;
+    	justify-content: center;
+    	align-items: flex-start;
+    	overflow-y: auto;
+	overflow-x: hidden;
+    	z-index: 2000;
+    	box-sizing: border-box;
+    	padding-bottom: 120px;
+}
+
+
+/* ========================================
+   cam screen content
+======================================== */
+
+.picture-content {
+    	width: 90%;
+    	max-width: 1700px;
+	min-height: calc(90vh - 120px);
+	text-align: center;
+    	color: white;
+    	font-family: Helvetica;
+	padding: 10px;
+    	padding-bottom: 100px;
+    	border-radius: 20px;
+	box-sizing: border-box;
+	margin-top: 30px;
+}
+
+
+/* ========================================
+   gallery
+======================================== */
+
+.picture-gallery {
+	display: flex;
+    	flex-wrap: wrap;
+    	justify-content: center;
+    	align-items: center;
+    	gap: 25px;
+    	margin-top: 30px;
+}
+
+
+/* ========================================
+   container
+======================================== */
+
+.picture-container {
+    	position: relative;
+    	width: 500px;
+    	height: 300px;
+    	overflow: hidden;
+    	border-radius: 15px;	
+    	box-shadow: 0 8px 20px
+        rgba(0,0,0,0.4);
+}
+
+
+/* ========================================
+   pictures
+======================================== */
+
+.picture-container img {
+    	width: 100%;
+    	height: 100%;
+    	object-fit: cover;
+    	display: block;
+    	transition: transform 0.4s ease;
+}
+
+
+/* ========================================
+   yung sa ww3schools
+======================================== */
+
+.picture-overlay {
+    	position: absolute;
+	bottom: 0;
+    	left: 0;
+    	width: 100%;
+    	height: 0;
+    	overflow: hidden;
+    	background: lightblue;
+	opacity: 0.9;
+	transition: height 0.5s ease; z-index: 2;
+}
+
+
+/* ========================================
+  slide up thing
+======================================== */
+
+.picture-container:hover
+.picture-overlay {
+    	height: 100%;
+}
+
+
+/* ========================================
+   text
+======================================== */
+
+.picture-overlay-text {
+    	position: absolute;
+	top: 50%;
+    	left: 50%;
+    	transform: translate(-50%, -50%);
+	text-align: center;
+	width: 90%;
+	opacity: 1;
+}
+
+
+/* ========================================
+   hoover
+======================================== */
+
+.picture-container:hover img {
+    transform:
+        scale(1.05);
+}
+
+
+/* ========================================
+   go back btn for pic screen
+======================================== */
+
+#pictureBackButton {
+    	position: fixed;
+	bottom: 25px;
+	left: 50%;
+    	transform: translateX(-50%);
+	z-index: 3000; margin: 0;
+    	padding: 15px 35px;
+    	font-size: 20px;
+    	box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+#pictureBackButton:hover {
+    	transform: translateX(-50%)scale(1.05);
+}
+
+
+/* ========================================
+   music screen
+======================================== */
+
+#MusicScreen {
+    	display: none;
+    	position: fixed;
+    	top: 0;
+    	left: 0;
+    	width: 100vw;
+    	height: 100vh;
+    	background-image:url('esma.png');
+    	background-repeat: no-repeat;
+    	background-position: center;
+    	background-size: cover;
+    	justify-content: flex-start;
+    	align-items: flex-start;
+    	overflow-y: auto;
+    	overflow-x: hidden;
+    	z-index: 2500;
+    	box-sizing: border-box;
+    	padding-bottom: 120px;
+    	-webkit-overflow-scrolling: touch;
+}
+
+
+/* ========================================
+   quote container
+======================================== */
+
+.quote-container {
+    	display: flex;
+    	flex-direction: column;
+    	gap: 30px;
+    	width: 100%;
+    	padding: 40px 0 100px 0;
+    	box-sizing: border-box;
+    	margin: 0;
+}
+
+
+/* ========================================
+   quote
+======================================== */
+
+.quote {
+    	background-color: #D1F0EB;
+    	position: relative;
+    	width: 1000px;
+    	min-height: 260px;
+    	border: 8px solid white;
+    	padding: 20px;
+    	margin: 0 auto;
+    	color: white;
+    	box-sizing: border-box;
+    	overflow: hidden;
+    	background-repeat: no-repeat;
+    	background-size: cover;
+    	background-position: center;
+    	background-attachment: fixed;
+    	flex-shrink: 0;
+    	text-align: left;
+}
+
+
+/* ========================================
+   title
+======================================== */
+
+.quote p1 {
+    	display: block;
+    	font-size: 110px !important;
+    	line-height: 1.3 !important;
+    	margin-top: 0;
+    	white-space: nowrap;
+    	text-align: left;
+    	font-family: Georgia, serif;
+    	text-shadow:
+        2px 2px 4px #888888;
+}
+
+
+/* ========================================
+   subtitle 
+======================================== */
+
+.quote p {
+    	font-size: 40px !important;
+    	ine-height: 1.2;
+    	argin: 5px;
+    	hite-space: nowrap;
+    	text-align: left;
+    	text-shadow: 2px 2px 4px #888888;
+}
+
+
+/* ========================================
+   MUSIC SCREEN GO BACK BUTTON
+======================================== */
+
+#musicBackButton {
+    	position: fixed;
+    	bottom: 25px;
+    	left: 50%;
+    	transform: translateX(-50%);
+    	z-index: 3000;
+    	margin: 0;
+    	padding: 15px 35px;
+    	font-size: 20px;
+    	box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+#musicBackButton:hover {
+    transform:
+        translateX(-50%)
+        scale(1.05);
+}
+
+
+/* ========================================
+   pang-mobile
+======================================== */
+
+@media (max-width: 700px) {
+
+    .button-container {
+     	gap: 10px;
+}
+
+    .btn {
+        padding: 60px 45px;
+        font-size: 50px;
+}
+
+    .letter {
+        padding: 25px;
+}
+
+    .letter-text {
+        font-size: 16px;
+}
+
+    .picture-content {
+        width: 95%;
+        min-height: auto;
+        font-size: 22px;
+        padding: 25px;
+        padding-bottom: 120px;
+        margin-top: 20px;
+}
+
+    .picture-gallery {
+        flex-direction: column;
+        gap: 15px;
+}
+
+    .picture-container {
+        width: 100%;
+        max-width: 500px;
+        height: auto;
+        aspect-ratio: 5 / 3;
+}
+
+    #pictureBackButton {
+        bottom: 20px;
+        font-size: 18px;
+        padding: 13px 30px;
+}
+
+    #musicBackButton {
+        bottom: 20px;
+        font-size: 18px;
+        padding: 13px 30px;
+}
+
+    .quote-container {
+        width: 100%;
+        padding: 30px 0 120px 0;
+        gap: 20px;
+ }
+
+    .quote {
+        width: 90%;
+        min-height: 220px;
+        margin: 0 auto;
+        padding: 5px;
+        text-align: left;
+}
+
+    .quote p1 {
+        text-align: left;
+}
+
+    .quote p {
+        text-align: left;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- ========================================
+     btns
+======================================== -->
+
+<div class="button-container">
+
+<button
+        class="btn"
+        id="cameraButton">
+        <i class="fa fa-camera"></i>
+
+    	</button>
+
+
+<button
+        class="btn" id="musicButton"> <i class="fa fa-music"></i> </button>
+
+
+<button
+        class="btn" id="envelopeButton"> <i class="fa fa-envelope"></i>
+
+    	</button>
+
+</div>
+
+
+<!-- ========================================
+     CAMERA / PICTURE SCREEN
+======================================== -->
+
+<div id="PictureScreen">
+
+    <div class="picture-content">
+
+        <h1>mga fav pics ko natin 📸</h1>
+
+        <p> more to come pa yan for sure </p>
+    
+<div class="picture-gallery">
+
+<div class="picture-container">
+
+                <img src="fav pic.jpg" alt="Memory 1"> <div class="picture-overlay"><div class="picture-overlay-text">
+
+               <h1>pajama party</h1>
+
+<p> FAV PIC KO NATIN 'TOOO, idk kahit parang moments before disaster 'to (aka yung napagalitan tayo ni sir), it just captures yung personalities natin so muchhhhh, idk if that makes sense pero yea parang for me this is THE chloe and troy pic </p>
+
+</div>
+</div>
+</div>
+
+
+          <div class="picture-container"> <img src="sabayang.png" alt="Memory 2"> <div class="picture-overlay"> <div class="picture-overlay-text">
+
+                    	<h1>sabayang pagbigkas</h1>
+
+                        <p> damnnn first pic natin grabe, di ko na rin matandaan bat mo ko inaaya nun na magpic, pero all i could think non was "talagang duguan tayo rn tas magpipicture tayo" pero one of my favs din </p>
+
+	</div>
+
+	</div>
+
+        </div>
+
+            <div class="picture-container"> <img src="mapeh musical.png" alt="Memory 3"><div class="picture-overlay"> <div class="picture-overlay-text">
+
+                        <h1>mapeh opera</h1>
+
+                        <p> after niyo kong lasunin neto ni ayesha e, yung pambaliw nating concept HAAHHWHSHHWHAHH tas amoy na amoy yung nestea sa room after niyang matapon sa lapag HAHAHWHSHWHSW
+                        </p>
+
+	</div>
+	</div>
+	</div>
+
+
+            <div class="picture-container"> <img src="field.png" alt="Memory 4"> <div class="picture-overlay"> <div class="picture-overlay-text">
+
+                        <h1>field trip</h1>
+
+                        <p> madalas kong sabihin na lucky charm kita, pero feeling ko talaga ikaw yung malas na nagpapastranded satin e HAAWJHSJWJSHWH naalala ko pa nung naglalaro tayo ng beanboozle habang nag-aantay sa rescue bus.
+                        </p>
+
+	</div>
+	</div>
+	</div>
+
+            <div class="picture-container"> <img src="hosting.png" alt="Memory 5"> <div class="picture-overlay"> <div class="picture-overlay-text">
+
+                        <h1>battle of the bands</h1>
+
+                        <p> ayun, dami nating mali neto AHWHWHSHHWHSJWH yung sister marissa t ardeta ko, yung nakatakip satin yung mga dahon sa live, jusko it was just so messy HAHWHSHWHHHDHWHA
+                        </p>
+
+	</div>
+	</div>
+	</div>
+
+
+            <div class="picture-container"> <img src="recollection.png" alt="Memory 6"> <div class="picture-overlay"> <div class="picture-overlay-text">
+
+                        <h1>last recollection</h1>
+
+                        <p> damn, to think na di na tayo pupunta sa kasigun sobrang bittersweet, pero sa ilang beses natin napunta don bakit isang beses lang tayo pumunta sa forrest?? like ang aesthetic don tbh
+                        </p>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+    <button class="back-button" id="pictureBackButton">
+        ← go back
+    </button>
+
+</div>
+
+
+<!-- ========================================
+     music screen
+======================================== -->
+
+<div id="MusicScreen">
+
+    <div class="quote-container">
+
+
+        <!-- QUOTE 1 -->
+
+        <div class="quote" style="background-image: url('https://i.pinimg.com/originals/76/7d/68/767d687e4a8b796f54553c0b0fe641a3.gif');">
+
+            <p1 style="font-size: 300px; line-height: 0.7;">
+                Pangarap Lang Kita
+            </p1>
+
+            <p style="font-size: 1000px;"> tanggap ko oh aking sinta, pangarap lang kita
+            </p>
+
+        </div>
+
+
+        <!-- QUOTE 2 -->
+
+        <div class="quote" style="background-image: url('https://i.pinimg.com/originals/00/7b/82/007b8237046ab5a6ccc54a6812247efa.gif');">
+
+            <p1 style="font-size: 300px; line-height: 0.7;"> Ruin the Frienship
+            </p1>
+
+            <p style="font-size: 1000px;">
+              better that than regret it for all time
+            </p>
+
+        </div>
+
+
+        <!-- QUOTE 3 -->
+
+        <div class="quote"
+            style="background-image: url('https://i.pinimg.com/originals/45/02/22/4502221e809c8a7d403089eb9293aa72.gif');">
+
+            <p1 style="font-size: 300px; line-height: 0.7;"> Be with You
+            </p1>
+
+	<p style="font-size: 1000px;"> you've changed since you met me, </p>
+
+         <p style="font-size: 1000px;"> and i feel i've done the same </p>
+
+        </div>
+
+
+        <!-- QUOTE 4 -->
+
+        <div class="quote" style="background-image: url('https://i.pinimg.com/originals/77/24/35/77243558cdc04570570cab0c8107f3bc.gif');">
+
+<p1 style="font-size: 300px; line-height: 0.7;"> Narda </p1>
+
+            <p style="font-size: 1000px;">
+                kung kaagaw ko ang lahat may pag-asa bang makilala ka? </p>
+
+        </div>
+
+    </div>
+
+
+    <button
+        class="back-button"
+        id="musicBackButton">
+
+        ← Go Back
+
+    </button>
+
+</div>
+
+
+<!-- ========================================
+     QUOTE AUDIO FILES
+======================================== -->
+
+<audio id="quoteAudio1" preload="auto">
+    <source src="pangarap lang kita.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="quoteAudio2" preload="auto">
+    <source src="my advice.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="quoteAudio3" preload="auto">
+    <source src="be with you.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="quoteAudio4" preload="auto">
+    <source src="narda.mp3" type="audio/mpeg">
+</audio>
+
+
+<!-- ========================================
+     SCREEN AUDIO FILES
+======================================== -->
+
+<audio id="mainAudio" loop preload="auto">
+    <source src="Y2Mate.is - Parokya ni Edgar - Pangarap lang kita Karaoke_Instrumental.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="pictureAudio" loop preload="auto">
+    <source src="be with you.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="letterAudio" loop preload="auto">
+    <source src="y2mateis-ruin-the-friendship-taylor-swift-karaoke_0tRNNVrM.mp3" type="audio/mpeg">
+</audio>
+
+
+<!-- ========================================
+     lettr screen
+======================================== -->
+
+<div id="letterScreen">
+
+    <div class="letter">
+
+        <div class="letter-text">
+
+            <p>
+                hi, wow can't believe na tinuloy ko yon,sa kakapalan ng mukha ko you would think madali lang siya pero was low-key going crazy of thinking of how to do this properly. also enjoy all of those gifts, para sayo talaga yan biscoff, matagal kong pinag-isipan at pinagplanuhan yan.
+            </p>
+
+
+            <p>
+so basically, bilang napagod na 'ko sa kakareklamo mo na gusto mo ng may photojourn tas ikaw magiging winning piece ka niya, heto na. eme HAHSHAHAH, jokes aside, magpapaliwanag na 'ko. all the way back in grade 9 second quarter, i think it was buwan ng wika or intrams, na i felt this way. sobrang corny mo kasi e, palagi kang sumasabay sa trip ko, natatawa kahit ang corny naman ng jokes ko, tsaka jusko, palagi tayong magkasama, as well as may stinart pa tayong tradition na magpipicture tayo sa labas ng room tuwing may cool peta or ganap in general. at sa totoo lang ang weird, ang weird mafeel yung feelings na 'to, NA PARA BANG DI TO 10X WEIRDER FOR U HAHSHAHSHW.
+            </p>
+
+
+            <p>
+kahit di ko pa sinasabi in this entire message what i mean about "i felt this way", puro asar at patawa parin ako, well im pretty sure you know naman, jusko di naman ako maglolong-message just to say na i appreciate our friendship diba? di ko naman bibigay lahat ng 'to just to say thank you for being my closest friend diba? sa totoo lang, alam ko naman na this is weird in general, pero kung mabibigyan ako ng chance, i wouldn't be weird, i wouldn't change my whole personality, at siguradong i wouldn't act differently na parang trying too hard, i would just treat you right. kasi gusto ko lang naman ng tratuhin ka ng buong-buo na tama, i mean romantically or not, of course itretreat parin naman kita ng tama, i would still care for you, at syempre pipikunin parin naman kita, pero gusto ipakita yung depth ng affection ko for you, and ayoko namang tipirin yun para sayo, di mo yon deserve. don't get me wrong we will always be friends at sana no matter how you respond to this message, di tayo maging awkward or weird kasi jusko last year na oh, pero sana mapag-isipan or maconsider mo lang. honestly, gusto ko lang din naman sabihin sayo before tayo mag-go our separate ways for shs.
+            </p>
+
+
+            <p> so ayon na nga gusto kita chloe all the back in the grade 9 pa, and i could give you a million reasons why, kung gusto mong isa-isahin ko pa sige go, pero this message is long enough as it is. you could just completely ignore this message and kalimutan na lang 'to, just enjoy the gifts that i got you or you could reply, it's all up to you. anyway, as your friend, these last two years of junior high school have been amazing because of you. i'll never forget how we ate lunch sa first meyci natin together, how you waited buong maghapon para lang antayin kami matapos. tas nung dspc training naman mabaliw-baliw tayo at di naman inexpect manalo pero triple fourth pala tayo nila jana. how we messed up so many times as masters of ceremony. and how could i ever forget nung inaaway lang kita non nung grade 8 tayo, and so much more, grabe we've come a long way no? and alam mo, hindi siguro ako nafall dahil sa ganda, talino, or charm mo, pero siguro dahil sa passion mo for the things you really do love, yung expressiveness mo aka yung "OH MY GOD" mo i always make fun of, and that annoyed face you make everytime iniinis kita. kaya din kahit init na init na rin ako, papahiramin muna kita fan, kaya palagi kitang hinahatian tuwing magbibigay flat tops sakin si ma'am guada, kaya pinapayungan kita ket in reality basang-basa na 'ko ng ulan, and i'd do it all over again just to see that corny smile and that taas kilay i have grown so fond of.
+            </p>
+
+
+            <p>
+no matter what happens, to me at least, you will always be the melting candle to my flame, the feature editor to my photo journ editor, my co master of ceremony, and of course my lucky charm. at imagine, sa daldal kong to, di parin sapat lahat ng sinabi ko para maencapsulate lahat ng nararamdaman ko sayo. kasi alam naman NATING lahat, bading naman talaga 'ko, halata naman diba? pero may something about you na iba talaga e, maybe it was the fact na palaasar ka din, or maybe it was yung pagka-oa na i didn't originally know you had in you, or yung sobrang ganadong-ganado ka pag nagkwekwento ka ng something specific na you remembered, actually, lahat-lahat na, from your specific interests, quirky mannerisms, and yung buong pagkatao mo in general made me feel like i wanted to be more than your friend, to show you the care na rinereklamo mo all this time na gusto mo, at paniwalaan mo ko when i say na handa kong gawin ang lahat just to prove it to you.
+            </p>
+
+
+            <p> nonetheless, even if you don't believe it, even if hindi ako yung magbibigay sayo nun, and even if this sounds so clichè, you deserve the world castillo, you always have, start believing in yourself naman, kasi kahit ako, habang buhay kong ipagmamalaki na kaibigan ko si chloe castillo.
+            </p>
+
+</div>
+
+
+        <div class="signature">
+
+            favorite mong kaaway,
+
+<br>
+<span>
+                troy
+</span>
+</div>
+
+
+        <button
+            class="back-button"
+            id="backButton">
+
+            ← go back
+
+</button>
+</div>
+</div>
+
+
+<script>
+
+
+/* ========================================
+   get elements
+======================================== */
+
+const buttonContainer =
+    document.querySelector('.button-container');
+
+const envelopeButton =
+    document.getElementById('envelopeButton');
+
+const cameraButton =
+    document.getElementById('cameraButton');
+
+const musicButton =
+    document.getElementById('musicButton');
+
+const letterScreen =
+    document.getElementById('letterScreen');
+
+const PictureScreen =
+    document.getElementById('PictureScreen');
+
+const MusicScreen =
+    document.getElementById('MusicScreen');
+
+const backButton =
+    document.getElementById('backButton');
+
+const pictureBackButton =
+    document.getElementById('pictureBackButton');
+
+const musicBackButton =
+    document.getElementById('musicBackButton');
+
+
+/* ========================================
+   screen audio
+======================================== */
+
+const mainAudio =
+    document.getElementById('mainAudio');
+
+const pictureAudio =
+    document.getElementById('pictureAudio');
+
+const musicAudio =
+    document.getElementById('musicAudio');
+
+const letterAudio =
+    document.getElementById('letterAudio');
+
+
+const screenAudios = [
+    mainAudio,
+    pictureAudio,
+    musicAudio,
+    letterAudio
+];
+
+
+/* ========================================
+   quote audio
+======================================== */
+
+const quotes =
+    document.querySelectorAll('.quote');
+
+const quoteAudios = [
+    document.getElementById('quoteAudio1'),
+    document.getElementById('quoteAudio2'),
+    document.getElementById('quoteAudio3'),
+    document.getElementById('quoteAudio4')
+];
+
+let currentlyPlayingAudio = null;
+
+
+/* ========================================
+   stop audio
+======================================== */
+
+function stopAllAudio() {
+
+    /* Stop screen audio */
+
+    screenAudios.forEach(function(audio) {
+
+        if (audio) {
+
+            audio.pause();
+            audio.currentTime = 0;
+
+        }
+
+    });
+
+
+    /* Stop quote audio */
+
+    quoteAudios.forEach(function(audio) {
+
+        if (audio) {
+
+            audio.pause();
+            audio.currentTime = 0;
+
+        }
+
+    });
+
+    currentlyPlayingAudio = null;
+}
+
+
+/* ========================================
+   screen audio play
+======================================== */
+
+function playScreenAudio(audio) {
+
+    stopAllAudio();
+
+    if (!audio) {
+        return;
+    }
+
+    audio.currentTime = 0;
+
+    audio.play()
+        .catch(function(error) {
+
+            console.log(
+                'Screen audio could not play:',
+                error
+            );
+
+        });
+}
+
+
+/* ========================================
+   3d button effects
+======================================== */
+
+const buttons =
+    document.querySelectorAll('.btn');
+
+buttons.forEach(button => {
+
+    button.addEventListener(
+        'click',
+        function(e) {
+
+            const rect =
+                button.getBoundingClientRect();
+
+            const x =
+                e.clientX -
+                rect.left;
+
+            const y =
+                e.clientY -
+                rect.top;
+
+            const ripple =
+                document.createElement('span');
+
+            ripple.classList.add('ripple');
+
+            ripple.style.left =
+                `${x}px`;
+
+            ripple.style.top =
+                `${y}px`;
+
+            const diameter =
+                Math.max(
+                    button.clientWidth,
+                    button.clientHeight
+                );
+
+            ripple.style.width =
+                `${diameter}px`;
+
+            ripple.style.height =
+                `${diameter}px`;
+
+            ripple.style.marginLeft =
+                `${-diameter / 2}px`;
+
+            ripple.style.marginTop =
+                `${-diameter / 2}px`;
+
+            const existingRipple =
+                button.getElementsByClassName(
+                    'ripple'
+                )[0];
+
+            if (existingRipple) {
+                existingRipple.remove();
+            }
+
+            button.appendChild(ripple);
+
+            setTimeout(
+                function() {
+
+                    if (ripple.parentNode) {
+                        ripple.remove();
+                    }
+
+                },
+                600
+            );
+
+        }
+    );
+
+
+    button.addEventListener(
+        'mousemove',
+        function(e) {
+
+            const rect =
+                button.getBoundingClientRect();
+
+            const x =
+                e.clientX -
+                rect.left -
+                rect.width / 2;
+
+            const y =
+                e.clientY -
+                rect.top -
+                rect.height / 2;
+
+            const maxTilt = 15;
+
+            const tiltX =
+                -(y / (rect.height / 2))
+                * maxTilt;
+
+            const tiltY =
+                (x / (rect.width / 2))
+                * maxTilt;
+
+            button.style.transform =
+                `rotateX(${tiltX}deg)
+                 rotateY(${tiltY}deg)
+                 scale(1.08)`;
+
+        }
+    );
+
+
+    button.addEventListener(
+        'mouseleave',
+        function() {
+
+            button.style.transform =
+                'rotateX(0deg) rotateY(0deg) scale(1)';
+
+        }
+    );
+
+});
+
+
+/* ========================================
+   evens
+======================================== */
+
+window.addEventListener(
+    'load',
+    function() {
+
+        playScreenAudio(mainAudio);
+
+    }
+);
+
+
+/* ========================================
+   envelope to letter
+======================================== */
+
+envelopeButton.addEventListener(
+    'click',
+    function() {
+
+        setTimeout(
+            function() {
+
+                buttonContainer.style.display =
+                    'none';
+
+                letterScreen.style.display =
+                    'flex';
+
+                playScreenAudio(letterAudio);
+
+            },
+            600
+        );
+
+    }
+);
+
+
+/* ========================================
+   cam screen to pic
+======================================== */
+
+cameraButton.addEventListener(
+    'click',
+    function() {
+
+        setTimeout(
+            function() {
+
+                buttonContainer.style.display =
+                    'none';
+
+                PictureScreen.style.display =
+                    'flex';
+
+                playScreenAudio(pictureAudio);
+
+            },
+            600
+        );
+
+    }
+);
+
+
+/* ========================================
+   music to music screen
+======================================== */
+
+musicButton.addEventListener(
+    'click',
+    function() {
+
+        setTimeout(
+            function() {
+
+                buttonContainer.style.display =
+                    'none';
+
+                MusicScreen.style.display =
+                    'flex';
+
+                playScreenAudio(musicAudio);
+
+            },
+            600
+        );
+
+    }
+);
+
+
+/* ========================================
+   letter to main
+======================================== */
+
+backButton.addEventListener(
+    'click',
+    function() {
+
+        letterScreen.style.display =
+            'none';
+
+        buttonContainer.style.display =
+            'flex';
+
+        playScreenAudio(mainAudio);
+
+    }
+);
+
+
+/* ========================================
+   picture to main
+======================================== */
+
+pictureBackButton.addEventListener(
+    'click',
+    function() {
+
+        PictureScreen.style.display =
+            'none';
+
+        buttonContainer.style.display =
+            'flex';
+
+        playScreenAudio(mainAudio);
+
+    }
+);
+
+
+/* ========================================
+   music to main
+======================================== */
+
+musicBackButton.addEventListener(
+    'click',
+    function() {
+
+        MusicScreen.style.display =
+            'none';
+
+        buttonContainer.style.display =
+            'flex';
+
+        playScreenAudio(mainAudio);
+
+    }
+);
+
+
+/* ========================================
+   quote hover audio
+======================================== */
+
+quotes.forEach(function(quote, index) {
+
+    quote.addEventListener(
+        'mouseenter',
+        function() {
+
+            const audio =
+                quoteAudios[index];
+
+            if (!audio) {
+                return;
+            }
+
+
+            /* Stop all audio first */
+
+            stopAllAudio();
+
+
+            /* Play quote audio */
+
+            audio.currentTime = 0;
+
+            audio.play()
+                .then(function() {
+
+                    currentlyPlayingAudio =
+                        audio;
+
+                })
+                .catch(function(error) {
+
+                    console.log(
+                        'Quote audio could not play:',
+                        error
+                    );
+
+                });
+
+        }
+    );
+
+
+    quote.addEventListener(
+        'mouseleave',
+        function() {
+
+            const audio =
+                quoteAudios[index];
+
+            if (!audio) {
+                return;
+            }
+
+            audio.pause();
+
+            audio.currentTime = 0;
+
+
+            if (
+                currentlyPlayingAudio === audio
+            ) {
+
+                currentlyPlayingAudio =
+                    null;
+
+                /*
+                 * Resume the Music screen
+                 * audio after leaving quote.
+                 */
+
+                if (
+                    MusicScreen.style.display ===
+                    'flex'
+                ) {
+
+                    musicAudio.play()
+                        .catch(function(error) {
+
+                            console.log(
+                                'Music screen audio could not resume:',
+                                error
+                            );
+
+                        });
+
+                }
+
+            }
+
+        }
+    );
+
+});
+
+
+</script>
+
+</body>
+</html>
+```
